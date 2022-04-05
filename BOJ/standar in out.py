@@ -44,6 +44,18 @@ def fibo(n):
         return fibo(n - 1) + fibo(n - 2)
 
 
+def BS(find, v, start, end):
+    if start > end :
+        return False
+    mid = (start + end) // 2
+    if v[mid]==find:
+        return True
+    elif v[mid]>find:
+        return BS(find, v, start, mid-1)
+    else :
+        return BS(find, v, mid+1, end)
+
+
 if __name__ == '__main__':
     # n = int(sys.stdin.readline())
     #
@@ -61,12 +73,25 @@ if __name__ == '__main__':
     #         break
     #     print("yes" if vps(t) else "no")
 
+    # input = sys.stdin.readline
+    #
+    # x = int(input())
+    #
+    # for i in range(x):
+    #     call_0 = 0
+    #     call_1 = 0
+    #     result = fibo(int(input()))
+    #     sys.stdout.write(str(call_0)+" "+str(call_1))
     input = sys.stdin.readline
+    print = sys.stdout.write
 
-    x = int(input())
+    n = int(input())
+    first = sorted(list(map(int, input().split())))
+    n = int(input())
+    second = list(map(int, input().split()))
+    for i in second:
+        if BS(i, first, 0, len(first) - 1):
+            print('1\n')
+        else:
+            print('0\n')
 
-    for i in range(x):
-        call_0 = 0
-        call_1 = 0
-        result = fibo(int(input()))
-        sys.stdout.write(str(call_0)+" "+str(call_1))
