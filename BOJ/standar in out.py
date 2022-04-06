@@ -85,13 +85,41 @@ if __name__ == '__main__':
     input = sys.stdin.readline
     print = sys.stdout.write
 
-    n = int(input())
-    first = sorted(list(map(int, input().split())))
-    n = int(input())
-    second = list(map(int, input().split()))
-    for i in second:
-        if BS(i, first, 0, len(first) - 1):
-            print('1\n')
-        else:
-            print('0\n')
+    # n = int(input())
+    # first = sorted(list(map(int, input().split())))
+    # n = int(input())
+    # second = list(map(int, input().split()))
+    # for i in second:
+    #     if BS(i, first, 0, len(first) - 1):
+    #         print('1\n')
+    #     else:
+    #         print('0\n')
 
+    # from collections import defaultdict
+    #
+    # n = int(input())
+    # dic = defaultdict(int)
+    # lst = sorted(list(map(int, input().split())))
+    # for i in lst:
+    #     dic[i] += 1
+    # n = int(input())
+    # find = list(map(int, input().split()))
+    # for i in find:
+    #     print('{} '.format(dic[i]))
+
+    n = int(input())
+    dic = {}
+    lst = sorted(list(map(int, input().split())))
+    for i in lst:
+        if dic.get(i) is None:
+            dic[i] = 1
+        else:
+            dic[i] += 1
+
+    n = int(input())
+    find = list(map(int, input().split()))
+    for i in find:
+        if dic.get(i) is None:
+            print('0 ')
+        else:
+            print('{} '.format(dic[i]))
