@@ -107,19 +107,22 @@ if __name__ == '__main__':
     # for i in find:
     #     print('{} '.format(dic[i]))
 
-    n = int(input())
-    dic = {}
-    lst = sorted(list(map(int, input().split())))
-    for i in lst:
-        if dic.get(i) is None:
-            dic[i] = 1
-        else:
-            dic[i] += 1
+    n, m = map(int, input().split())
+    trees = list(map(int, input().split()))
 
-    n = int(input())
-    find = list(map(int, input().split()))
-    for i in find:
-        if dic.get(i) is None:
-            print('0 ')
-        else:
-            print('{} '.format(dic[i]))
+    start = 1
+    end = max(trees)
+    while start <= end:
+        mid = (start + end) // 2
+
+        wood = 0
+        for t in trees:
+            if t >= mid:
+                wood += (t - mid)
+
+        if wood >= m:
+            start = mid + 1
+        elif wood < m:
+            end = mid - 1
+
+    print('{}'.format(end))
