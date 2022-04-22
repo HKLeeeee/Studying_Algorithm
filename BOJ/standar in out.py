@@ -83,7 +83,7 @@ if __name__ == '__main__':
     #     result = fibo(int(input()))
     #     sys.stdout.write(str(call_0)+" "+str(call_1))
     input = sys.stdin.readline
-    print = sys.stdout.write
+    # print = sys.stdout.write
 
     # n = int(input())
     # first = sorted(list(map(int, input().split())))
@@ -107,22 +107,36 @@ if __name__ == '__main__':
     # for i in find:
     #     print('{} '.format(dic[i]))
 
-    n, m = map(int, input().split())
-    trees = list(map(int, input().split()))
+    # n, m = map(int, input().split())
+    # trees = list(map(int, input().split()))
 
-    start = 1
-    end = max(trees)
-    while start <= end:
-        mid = (start + end) // 2
+    # start = 1
+    # end = max(trees)
+    # while start <= end:
+    #     mid = (start + end) // 2
+    #
+    #     wood = 0
+    #     for t in trees:
+    #         if t >= mid:
+    #             wood += (t - mid)
+    #
+    #     if wood >= m:
+    #         start = mid + 1
+    #     elif wood < m:
+    #         end = mid - 1
+    #
+    # print('{}'.format(end))
 
-        wood = 0
-        for t in trees:
-            if t >= mid:
-                wood += (t - mid)
+    import heapq
+    n = int(input())
+    max_heap = []
 
-        if wood >= m:
-            start = mid + 1
-        elif wood < m:
-            end = mid - 1
-
-    print('{}'.format(end))
+    for i in range(n):
+        x = int(input())
+        if x == 0:
+            if len(max_heap) == 0:
+                print('0')
+            else:
+                print('{}'.format(-1 * heapq.heappop(max_heap)))
+        else:
+            heapq.heappush(max_heap, -1 * x)
