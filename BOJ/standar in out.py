@@ -82,7 +82,6 @@ if __name__ == '__main__':
     #     call_1 = 0
     #     result = fibo(int(input()))
     #     sys.stdout.write(str(call_0)+" "+str(call_1))
-    input = sys.stdin.readline
     # print = sys.stdout.write
 
     # n = int(input())
@@ -127,16 +126,25 @@ if __name__ == '__main__':
     #
     # print('{}'.format(end))
 
-    import heapq
-    n = int(input())
-    max_heap = []
+    # import heapq
+    # n = int(input())
+    # max_heap = []
+    #
+    # for i in range(n):
+    #     x = int(input())
+    #     if x == 0:
+    #         if len(max_heap) == 0:
+    #             print('0')
+    #         else:
+    #             print('{}'.format(-1 * heapq.heappop(max_heap)))
+    #     else:
+    #         heapq.heappush(max_heap, -1 * x)
 
-    for i in range(n):
-        x = int(input())
-        if x == 0:
-            if len(max_heap) == 0:
-                print('0')
-            else:
-                print('{}'.format(-1 * heapq.heappop(max_heap)))
-        else:
-            heapq.heappush(max_heap, -1 * x)
+    while True :
+        try:
+            print(input())
+        except :
+            break
+    # print('End')
+    a = input()
+    print(a)
