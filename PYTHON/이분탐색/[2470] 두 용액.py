@@ -32,3 +32,4 @@ if __name__ == "__main__":
             v1, v2 = nums[i], nums[candidate]
 
     print(v1, v2)
+    print(1 << 31 == 1 * 2 ** 31)

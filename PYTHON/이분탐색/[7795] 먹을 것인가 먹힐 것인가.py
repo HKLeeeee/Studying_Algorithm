@@ -1,19 +1,25 @@
 import sys
+
 input = sys.stdin.readline
+
+
+def lower_bound(a, L, R, x):
+    result = -1
+    while L <= R:
+        mid = int((L + R) / 2)
+        if a[mid] >= x:
+            R = mid - 1
+        elif a[mid] < x:
+            result = mid
+            L = mid + 1
+    return result
+
 
 def solve(A, B):
     cnt = 0
     for a in A:
-        L = 0
-        R = len(B) - 1
-        result = -1
-        while L <= R:
-            mid = int((L + R) / 2)
-            if B[mid] >= a:
-                R = mid - 1
-            elif B[mid] < a:
-                result = mid
-                L = mid + 1
+        L, R = 0, len(B) - 1
+        result = lower_bound(B, L, R, a)
         cnt += (result + 1)
     return cnt
 
