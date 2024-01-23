@@ -7,7 +7,7 @@ def virus():
     new_board = deepcopy(board)
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
-    q = deque(virus_loc)
+    q = deque(virus_loc) # multisource BFS
     while q :
         x, y = q.popleft()
         for i in range(4):
