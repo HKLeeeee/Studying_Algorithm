@@ -13,10 +13,9 @@ for _ in range(M):
 start, end = map(int, input().split())
 dist = [10_000_000_001 for _ in range(N + 1)]
 dist[start] = 0
-heap = []
+heapq.heapify(adj_list[start])
+heap = adj_list[start]
 
-for v in adj_list[start]:
-    heapq.heappush(heap, v)
 while heap:
     p, t = heapq.heappop(heap)
     if p >= dist[t]:
