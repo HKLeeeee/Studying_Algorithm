@@ -20,8 +20,8 @@ while heap:
     p, t = heapq.heappop(heap)
     if p >= dist[t]:
         continue
-    dist[t] = p
     for (vp, vt) in adj_list[t]:
-        heapq.heappush(heap, (vp + p, vt))
+        dist[vt] = vp + p
+        heapq.heappush(heap, (dist[vt], vt))
 
 print(dist[end])
