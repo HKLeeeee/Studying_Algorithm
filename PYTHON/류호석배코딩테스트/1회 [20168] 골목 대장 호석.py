@@ -28,7 +28,6 @@
 
 import sys
 import heapq
-
 input = sys.stdin.readline
 N, M, A, B, C = map(int, input().split())
 adj_list = [[] for _ in range(N + 1)]
@@ -36,25 +35,33 @@ for _ in range(M):
     a, b, m = map(int, input().split())
     adj_list[a].append((b, m))
     adj_list[b].append((a, m))
-ans = 21
-dist = [1 << 31 for _ in range(N + 1)]
-dist[A] = 0
-q = [[0, 0, 0, A]]  # (dist, 지금까지 최대 수금액, 여기까지 오는데 총 드는 금액, node))
 
-while q:
-    d, max_fee, acc_fee, node = heapq.heappop(q)
-    if d > dist[node]:
-        continue
+def dijkstra(max_fee): # 조건 내에서 다익스트라
+    dist = [1 << 31 for _ in range(N + 1)]
+    dist[A] = 0
+    heap = [[0, A]]
+    while heap:
+        acc_fee, node = heapq.heappop(heap)
+        if acc_fee > dist[node]: # != ??
+            continue
 
-    if node == B:
-        if acc_fee <= C:
-            ans = min(ans, max_fee)
-            break
-    else:
+        if node == B and acc_fee <= C:
+            return True
+
         for (nn, fee) in adj_list[node]:
-            if acc_fee + fee <= C and dist[nn] > d+1:
-                dist[nn] = d+1
-                heapq.heappush(q, [dist[nn], max(max_fee, fee), acc_fee + fee, nn])
-if ans == 21:
-    ans = -1
+            if fee <= max_fee and dist[nn] > acc_fee + fee:
+                dist[nn] = acc_fee + fee
+                heapq.heappush(heap, [acc_fee + fee, nn])
+    return False
+
+ans = -1
+L, R = 0, 10**9
+while L <= R: # 파라메트릭 서치
+    mid = (L+R) // 2
+    if dijkstra(mid):
+        ans = mid
+        R = mid - 1
+    else :
+        L = mid + 1
+
 print(ans)
